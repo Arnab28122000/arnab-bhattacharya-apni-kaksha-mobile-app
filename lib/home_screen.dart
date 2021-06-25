@@ -249,12 +249,148 @@ Widget shopPage(context, TabController _tabController){
                           );
                         }
                         ),
-                      Container(
-                        child: Text("CATEGORIES"),
-                      ),
-                      Container(
-                        child: Text("FAVOURITES"),
-                      )
+                       ListView.builder(
+                        shrinkWrap: true,
+                        physics: ScrollPhysics(),
+                        itemCount: methods.data.length,
+                        itemBuilder: (_, int i){
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                                                      child: Card(
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(20)
+                                                        ),
+                              elevation: 2,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *0.32,
+                                      height: 150,
+
+                                      decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(20),
+                                              image: DecorationImage(image: AssetImage(methods.data.elementAt(i).imageUrl!, ), fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                     mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text( '\$'+ methods.data.elementAt(i).price!.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                                      SizedBox(height: 3),
+                                      Text( methods.data.elementAt(i).name!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                      SizedBox(height: 3),
+                                      Container(
+                                        width: 200,
+                                        child: Text( methods.data.elementAt(i).description!, style: TextStyle(color: Colors.grey),)),
+                                      SizedBox(height: 3),
+                                      Text( methods.data.elementAt(i).address!),
+                                      SizedBox(height: 7),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children:[
+                                           Text(methods.data.elementAt(i).quantity!.toString() + 'kg',  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                           SizedBox(width: 50),
+                                           Container(
+                                             decoration: BoxDecoration(
+                                               color: Colors.grey[200],
+                                               borderRadius: BorderRadius.circular(20)
+                                             ),
+                                             child: TextButton(onPressed: (){
+                                               ScaffoldMessenger.of(context).showSnackBar(
+                                                 SnackBar(
+                                                   content: Text(methods.data.elementAt(i).name! + " added to cart..", style: TextStyle(fontWeight: FontWeight.bold),),
+                                                   duration: Duration(milliseconds: 700),
+                                                   backgroundColor: Colors.lightGreen,
+                                                   ));
+                                               setState(() {
+                                                 carItems.add(methods.data.elementAt(i));
+                                               });
+                                             }, child: Text("ADD", style: TextStyle(color: Colors.orange),)))
+                                        ]),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+                        ),
+                       ListView.builder(
+                        shrinkWrap: true,
+                        physics: ScrollPhysics(),
+                        itemCount: methods.data.length,
+                        itemBuilder: (_, int i){
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                                                      child: Card(
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(20)
+                                                        ),
+                              elevation: 2,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *0.32,
+                                      height: 150,
+
+                                      decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(20),
+                                              image: DecorationImage(image: AssetImage(methods.data.elementAt(i).imageUrl!, ), fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                     mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text( '\$'+ methods.data.elementAt(i).price!.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                                      SizedBox(height: 3),
+                                      Text( methods.data.elementAt(i).name!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                      SizedBox(height: 3),
+                                      Container(
+                                        width: 200,
+                                        child: Text( methods.data.elementAt(i).description!, style: TextStyle(color: Colors.grey),)),
+                                      SizedBox(height: 3),
+                                      Text( methods.data.elementAt(i).address!),
+                                      SizedBox(height: 7),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children:[
+                                           Text(methods.data.elementAt(i).quantity!.toString() + 'kg',  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                           SizedBox(width: 50),
+                                           Container(
+                                             decoration: BoxDecoration(
+                                               color: Colors.grey[200],
+                                               borderRadius: BorderRadius.circular(20)
+                                             ),
+                                             child: TextButton(onPressed: (){
+                                               ScaffoldMessenger.of(context).showSnackBar(
+                                                 SnackBar(
+                                                   content: Text(methods.data.elementAt(i).name! + " added to cart..", style: TextStyle(fontWeight: FontWeight.bold),),
+                                                   duration: Duration(milliseconds: 700),
+                                                   backgroundColor: Colors.lightGreen,
+                                                   ));
+                                               setState(() {
+                                                 carItems.add(methods.data.elementAt(i));
+                                               });
+                                             }, child: Text("ADD", style: TextStyle(color: Colors.orange),)))
+                                        ]),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+                        ),
                 ],
               ),
             ),
